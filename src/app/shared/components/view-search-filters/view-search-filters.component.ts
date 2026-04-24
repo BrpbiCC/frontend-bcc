@@ -406,7 +406,8 @@ export class ViewSearchFiltersComponent implements OnInit, OnDestroy {
     'tickets',
     'pedidos',
     'locales',
-    'usuarios'
+    'usuarios',
+    'tenants'
   ];
 
   constructor(
@@ -466,12 +467,13 @@ export class ViewSearchFiltersComponent implements OnInit, OnDestroy {
   getSearchPlaceholder(): string {
     const view = this.filterService.getActiveView();
     const placeholders: { [key: string]: string } = {
-      'activos': 'Buscar por código NFC, local, técnico...',
+      'activos': 'Buscar por código NFC, local, técnica...',
       'visitas': 'Buscar por local, técnico, fecha...',
       'tickets': 'Buscar por número, descripción, técnico...',
       'pedidos': 'Buscar por número, cliente, producto...',
       'locales': 'Buscar por nombre, dirección, comuna...',
-      'usuarios': 'Buscar por nombre, email, rol...'
+      'usuarios': 'Buscar por nombre, email, rol...',
+      'tenants': 'Buscar por nombre, ID...'
     };
     return placeholders[view] || 'Buscar...';
   }

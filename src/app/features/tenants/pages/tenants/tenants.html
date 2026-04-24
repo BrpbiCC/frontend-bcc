@@ -7,6 +7,8 @@
     </div>
   </div>
 
+  <app-view-search-filters></app-view-search-filters>
+
   <!-- Pestañas -->
   <div class="tabs-container">
     <button 
@@ -34,15 +36,15 @@
       </div>
       <div class="stat-card">
         <span class="stat-label">Activos</span>
-        <span class="stat-value stat-activo">{{ tenants.filter(t => t.estado === 'Activo').length }}</span>
+        <span class="stat-value stat-activo">{{ activosCount }}</span>
       </div>
       <div class="stat-card">
         <span class="stat-label">Inactivos</span>
-        <span class="stat-value stat-inactivo">{{ tenants.filter(t => t.estado === 'Inactivo').length }}</span>
+        <span class="stat-value stat-inactivo">{{ inactivosCount }}</span>
       </div>
       <div class="stat-card">
         <span class="stat-label">En Mantenimiento</span>
-        <span class="stat-value stat-mant">{{ tenants.filter(t => t.estado === 'Mantenimiento').length }}</span>
+        <span class="stat-value stat-mant">{{ mantenimientoCount }}</span>
       </div>
     </div>
 

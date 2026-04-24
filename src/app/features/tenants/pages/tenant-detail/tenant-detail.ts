@@ -40,10 +40,12 @@ interface EditTenantForm {
 export class TenantDetail implements OnInit {
   tenantId = '';
   tenant: TenantDetailViewModel | null = null;
+  tenantUsers: { id: string; name: string; email: string; role: string; active?: boolean }[] = [];
   loadError: string | null = null;
   actionError: string | null = null;
   isLoading = false;
   isEditing = false;
+  isToggling = false;
 
   editTenantForm: EditTenantForm = {
     name: '',
@@ -78,11 +80,63 @@ export class TenantDetail implements OnInit {
 
     this.tenantsService.getTenantById(this.tenantId).subscribe({
       next: (tenant) => {
-        this.loadUsersCount(tenant);
+        this.loadTenantUsers(tenant);
       },
       error: (error: HttpErrorResponse) => {
         this.isLoading = false;
         this.loadError = this.buildErrorMessage(error, 'tenants');
+      },
+    });
+  }
+
+  private loadTenantUsers(tenant: BackendTenant): void {
+    this.usersService.getUsers().subscribe({
+      next: (users) => {
+        const tenantUsers = users.filter((user) => user.tenantId === tenant.id);
+        this.tenantUsers = tenantUsers.map(user => ({
+          id: user.id,
+          name: `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() || user.email,
+          email: user.email,
+          role: user.role?.toString() || 'Sin rol',
+          active: user.active
+        }));
+        this.tenant = this.mapTenant(tenant, tenantUsers.length);
+        this.isLoading = false;
+      },
+      error: () => {
+        this.tenant = this.mapTenant(tenant, 0);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  async toggleStatus(): Promise<void> {
+    if (!this.tenant) return;
+
+    const newStatus = this.tenant.estado === 'Activo';
+    const action = newStatus ? 'desactivar' : 'activar';
+
+    const confirmed = await this.confirmDialog.confirm({
+      title: `${newStatus ? 'Desactivar' : 'Activar'} tenant`,
+      message: `¿Estás seguro de ${action} el tenant "${this.tenant.name}"?`,
+      confirmText: newStatus ? 'Desactivar' : 'Activar',
+      cancelText: 'Cancelar',
+      variant: newStatus ? 'warning' : 'info',
+    });
+
+    if (!confirmed) return;
+
+    this.actionError = null;
+    this.isToggling = true;
+
+    this.tenantsService.toggleTenantStatus(this.tenantId, !newStatus).subscribe({
+      next: (updated) => {
+        this.tenant = this.mapTenant(updated, this.tenant?.usersCount ?? 0);
+        this.isToggling = false;
+      },
+      error: (error: HttpErrorResponse) => {
+        this.actionError = this.buildErrorMessage(error, 'tenants');
+        this.isToggling = false;
       },
     });
   }
@@ -167,19 +221,8 @@ export class TenantDetail implements OnInit {
     });
   }
 
-  private loadUsersCount(tenant: BackendTenant): void {
-    this.usersService.getUsers().subscribe({
-      next: (users) => {
-        const usersCount = users.filter((user) => user.tenantId === tenant.id).length;
-        this.tenant = this.mapTenant(tenant, usersCount);
-        this.isLoading = false;
-      },
-      error: () => {
-        // Si falla users, igual mostrar detalle del tenant.
-        this.tenant = this.mapTenant(tenant, 0);
-        this.isLoading = false;
-      },
-    });
+  get isActive(): boolean {
+    return this.tenant?.estado === 'Activo';
   }
 
   private mapTenant(tenant: BackendTenant, usersCount: number): TenantDetailViewModel {

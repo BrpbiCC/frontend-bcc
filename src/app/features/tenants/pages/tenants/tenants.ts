@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, forkJoin, of } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { FilterService } from '../../../../core/config/filter.service';
+import { ViewSearchFiltersComponent } from '../../../../shared/components/view-search-filters/view-search-filters.component';
 import {
   TenantsService,
   type BackendTenant,
@@ -31,7 +32,7 @@ interface CreateTenantForm {
 @Component({
   selector: 'app-tenants',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, ViewSearchFiltersComponent],
   templateUrl: './tenants.html',
   styleUrls: ['./tenants.css']
 })
@@ -41,6 +42,18 @@ export class Tenants implements OnInit {
   tenants: Tenant[] = [];
   loadError: string | null = null;
   createError: string | null = null;
+
+  get activosCount(): number {
+    return this.tenants.filter(t => t.estado === 'Activo').length;
+  }
+
+  get inactivosCount(): number {
+    return this.tenants.filter(t => t.estado === 'Inactivo').length;
+  }
+
+  get mantenimientoCount(): number {
+    return this.tenants.filter(t => t.estado === 'Mantenimiento').length;
+  }
 
   columnas = ['id', 'nombre', 'usuarios', 'estado', 'fecha'];
 

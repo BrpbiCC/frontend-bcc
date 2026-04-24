@@ -61,4 +61,8 @@ export class TenantsService {
   deleteTenant(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  toggleTenantStatus(id: string, active: boolean): Observable<BackendTenant> {
+    return this.http.patch<BackendTenant>(`${this.apiUrl}/${id}`, { active });
+  }
 }

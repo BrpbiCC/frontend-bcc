@@ -200,6 +200,20 @@ export class FilterService {
 
     this.filterConfigMap = {
       none: [],
+      tenants: [
+        {
+          label: 'Estado',
+          key: 'status',
+          type: 'select',
+          placeholder: 'Selecciona estado',
+          isPrimary: true,
+          options: [
+            { value: 'Activo', label: 'Activo' },
+            { value: 'Inactivo', label: 'Inactivo' },
+            { value: 'Mantenimiento', label: 'Mantenimiento' },
+          ],
+        },
+      ],
       tickets: [
         {
           label: 'Generador',
