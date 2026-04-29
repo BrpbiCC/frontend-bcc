@@ -9,7 +9,6 @@ import {
   type UpdateTenantRequest,
 } from '@features/tenants/services/tenants.service';
 import { UsersService } from '@features/users/services/users.service';
-import { ConfirmDialogService } from '@shared/dialogs/confirm-dialog.service';
 
 interface TenantDetailViewModel {
   id: string;
@@ -59,7 +58,6 @@ export class TenantDetail implements OnInit {
     private router: Router,
     private tenantsService: TenantsService,
     private usersService: UsersService,
-    private confirmDialog: ConfirmDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -116,13 +114,7 @@ export class TenantDetail implements OnInit {
     const newStatus = this.tenant.estado === 'Activo';
     const action = newStatus ? 'desactivar' : 'activar';
 
-    const confirmed = await this.confirmDialog.confirm({
-      title: `${newStatus ? 'Desactivar' : 'Activar'} tenant`,
-      message: `¿Estás seguro de ${action} el tenant "${this.tenant.name}"?`,
-      confirmText: newStatus ? 'Desactivar' : 'Activar',
-      cancelText: 'Cancelar',
-      variant: newStatus ? 'warning' : 'info',
-    });
+    const confirmed = confirm(`¿Estás seguro de ${action} el tenant "${this.tenant.name}"?`);
 
     if (!confirmed) return;
 
@@ -197,17 +189,8 @@ export class TenantDetail implements OnInit {
       return;
     }
 
-    const confirmed = await this.confirmDialog.confirm({
-      title: 'Eliminar tenant',
-      message: `Se eliminara el tenant ${this.tenant.name}. Esta accion no se puede deshacer.`,
-      confirmText: 'Eliminar',
-      cancelText: 'Cancelar',
-      variant: 'danger',
-    });
-
-    if (!confirmed) {
-      return;
-    }
+    const confirmed = confirm(`¿Estás seguro de que deseas eliminar este local? Esta acción no puede deshacerse.`);
+    if (!confirmed) return;
 
     this.actionError = null;
 

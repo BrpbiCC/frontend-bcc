@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Subscription, debounceTime, distinctUntilChanged, map } from 'rxjs';
 import { FilterService } from '@core/config/filter.service';
 import { NfcTagsService, type BackendNfcTag } from '@core/services/nfc-tags.service';
-import { ConfirmDialogService } from '@shared/dialogs/confirm-dialog.service';
 import { ViewSearchFiltersComponent } from '@shared/components/view-search-filters/view-search-filters.component';
 
 export interface ActivoNFC {
@@ -91,7 +90,6 @@ export class Activos implements OnInit, OnDestroy {
   constructor(
     private filterService: FilterService,
     private nfcTagsService: NfcTagsService,
-    private confirmDialog: ConfirmDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -180,14 +178,8 @@ export class Activos implements OnInit, OnDestroy {
       return;
     }
 
-    const confirmed = await this.confirmDialog.confirm({
-      title: 'Eliminar activo NFC',
-      message: 'Esta accion no se puede deshacer. Se eliminara definitivamente el activo seleccionado.',
-      confirmText: 'Eliminar',
-      cancelText: 'Cancelar',
-      variant: 'danger',
-    });
-
+    const confirmed = confirm('¿Estás seguro de que deseas eliminar este activo NFC? Esta acción no puede deshacerse.');
+    
     if (confirmed) {
       this.todosLosActivos = this.todosLosActivos.filter((item) => item.id !== activo.id);
       this.applySearchFilter(this.currentSearchQuery);

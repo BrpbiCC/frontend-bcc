@@ -11,7 +11,6 @@ import {
   type CreateUserRequest,
   type UpdateUserRequest,
 } from '@features/users/services/users.service';
-import { ConfirmDialogService } from '@shared/dialogs/confirm-dialog.service';
 import { ViewSearchFiltersComponent } from '@shared/components/view-search-filters/view-search-filters.component';
 
 interface Usuario {
@@ -75,7 +74,6 @@ export class Usuarios implements OnInit, OnDestroy {
     private filterService: FilterService,
     private usersService: UsersService,
     private authService: AuthService,
-    private confirmDialog: ConfirmDialogService,
   ) {}
 
   ngOnInit(): void {
@@ -409,14 +407,8 @@ export class Usuarios implements OnInit, OnDestroy {
       return;
     }
 
-    const confirmed = await this.confirmDialog.confirm({
-      title: 'Desactivar usuario',
-      message: 'El usuario dejara de tener acceso al sistema hasta que sea reactivado.',
-      confirmText: 'Desactivar',
-      cancelText: 'Cancelar',
-      variant: 'warning',
-    });
-
+    const confirmed = confirm('¿Estás seguro de que deseas desactivar este usuario? El usuario dejará de tener acceso al sistema hasta que sea reactivado.');
+    
     if (!confirmed) {
       return;
     }
