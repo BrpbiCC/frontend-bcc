@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FilterService, type FilterOption } from '../../../core/config/filter.service';
+import { FilterService, type FilterOption } from '@core/config/filter.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -554,3 +554,6 @@ export class ViewSearchFiltersComponent implements OnInit, OnDestroy {
     this.filterService.updateFilters({});
   }
 }
+
+
+

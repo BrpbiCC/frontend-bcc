@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { TenantsService, BackendTenant } from '../../tenants/services/tenants.service';
-import { UsersService, BackendUser } from '../../users/services/users.service';
-import { TicketsService, BackendTicket } from '../../tickets/services/tickets.service';
+import { environment } from '@env/environment';
+import { TenantsService, BackendTenant } from '@features/tenants/services/tenants.service';
+import { UsersService, BackendUser } from '@features/users/services/users.service';
+import { TicketsService, BackendTicket } from '@features/tickets/services/tickets.service';
 
 export interface GlobalMetric {
   label: string;
@@ -105,3 +105,6 @@ export class MetricasGlobalesService {
     return Math.min(Math.round(totalLoad / 2), 100);
   }
 }
+
+
+

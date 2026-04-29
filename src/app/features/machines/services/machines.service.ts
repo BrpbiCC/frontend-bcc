@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
-import { Machine, MachineResponse } from '../models/machine.model';
-import { environment } from '../../../../environments/environment';
+import { Machine, MachineResponse } from '@models/machine.model';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -28,3 +28,7 @@ export class MachinesService {
     return this.http.get<Machine>(`${this.apiUrl}/${id}`);
   }
 }
+
+
+
+

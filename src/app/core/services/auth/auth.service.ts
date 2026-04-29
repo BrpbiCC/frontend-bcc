@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { environment } from '@env/environment';
 
 export type UserRole = 'admin' | 'support' | 'super-admin';
 
@@ -364,3 +364,6 @@ export class AuthService {
     return this.normalizeRole(role);
   }
 }
+
+
+

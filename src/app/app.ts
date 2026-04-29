@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { Sidebar } from './core/components/layout/sidebar/sidebar';
-import { Topbar } from './core/components/layout/topbar/topbar';
+import { Sidebar } from './layouts/sidebar/sidebar';
+import { Topbar } from './layouts/topbar/topbar';
 import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, Sidebar, Topbar, CommonModule],
   templateUrl: './app.html',
-  styleUrl: '././styles/app.css',
+  styleUrl: '../styles/base/app.css',
 })
 export class App {
   showMenu = false;
@@ -30,3 +30,7 @@ export class App {
     return url === '/login' || url === '/';
   }
 }
+
+
+
+

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService, type UserRole } from '../../core/services/auth/auth.service';
+import { AuthService, type UserRole } from '@core/services/auth/auth.service';
 
 @Component({
   selector: 'app-role-selector',
@@ -153,3 +153,7 @@ export class RoleSelector {
     this.router.navigate(['/dashboard']);
   }
 }
+
+
+
+

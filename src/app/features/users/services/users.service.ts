@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { environment } from '@env/environment';
 
 export interface BackendUser {
   id: string;
@@ -122,3 +122,6 @@ export class UsersService {
     return typeof value === 'object' && value !== null && 'id' in value;
   }
 }
+
+
+

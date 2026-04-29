@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../../environments/environment';
+import { environment } from '@env/environment';
 
 export interface BackendTenant {
   id: string;
@@ -66,3 +66,6 @@ export class TenantsService {
     return this.http.patch<BackendTenant>(`${this.apiUrl}/${id}`, { active });
   }
 }
+
+
+

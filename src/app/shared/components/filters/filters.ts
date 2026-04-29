@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SharedMaterialModule } from '../../../shared/material/material.module';
-import { FilterService, type FilterOption } from '../../../core/config/filter.service';
-import { ChileLocationsService } from '../../../core/config/chile-locations.service';
+import { SharedMaterialModule } from '@shared/material/material.module';
+import { FilterService, type FilterOption } from '@core/config/filter.service';
+import { ChileLocationsService } from '@core/config/chile-locations.service';
 
 interface ActiveFilter {
   key: string;
@@ -620,3 +620,7 @@ export class FiltersComponent implements OnInit {
     return filter.options || [];
   }
 }
+
+
+
+

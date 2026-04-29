@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of, switchMap } from 'rxjs';
-import { Local } from '../models/local.model';
-import { environment } from '../../../environments/environment';
+import { Local } from '@models/local.model';
+import { environment } from '@env/environment';
 
 export interface BackendStore {
   id: string;
@@ -224,3 +224,7 @@ export class LocalesService {
   }
 ]
 */
+
+
+
+

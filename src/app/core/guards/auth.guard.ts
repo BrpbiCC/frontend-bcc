@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Router, UrlTree } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '@core/services/auth/auth.service';
 
 export const authGuard = (): boolean | UrlTree => {
   const authService = inject(AuthService);
@@ -34,3 +34,6 @@ export const dashboardRedirectGuard = (): UrlTree => {
 
   return router.createUrlTree([authService.getDashboardRoute()]);
 };
+
+
+

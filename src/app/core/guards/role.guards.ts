@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService, type UserRole } from '../services/auth/auth.service';
+import { AuthService, type UserRole } from '@core/services/auth/auth.service';
 
 export const roleGuard = (allowedRoles: UserRole[]) => {
   const authService = inject(AuthService);
@@ -17,3 +17,6 @@ export const roleGuard = (allowedRoles: UserRole[]) => {
 
   return router.createUrlTree(['/unauthorized']); // no tiene permiso
 };
+
+
+

@@ -50,3 +50,7 @@ export class ViewHistoryService {
     this.historySubject.next(history);
   }
 }
+
+
+
+

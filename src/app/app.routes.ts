@@ -1,21 +1,21 @@
 import { Routes } from '@angular/router';
-import { Login } from './features/auth/login/login';
-import { Dashboard } from './features/dashboard/pages/dashboard/dashboard';
-import { Activos } from './features/machines/pages/activos/activos';
-import { Visitas } from './features/visits/pages/visitas/visitas';
-import { Tickets } from './features/tickets/pages/tickets/tickets';
-import { TicketDetail } from './features/tickets/pages/ticket-detail/ticket-detail';
-import { Pedidos } from './features/sales/pages/pedidos/pedidos';
-import { Locales } from './features/locales/pages/locales/locales';
-import { Reportes } from './features/reportes/pages/reportes/reportes';
-import { Usuarios } from './features/users/pages/usuarios/usuarios';
-import { Perfil } from './features/perfil/pages/perfil/perfil';
-import { Tenants } from './features/tenants/pages/tenants/tenants';
-import { TenantDetail } from './features/tenants/pages/tenant-detail/tenant-detail';
-import { MetricasGlobales } from './features/metricas-globales/pages/metricas-globales/metricas-globales';
-import { Unauthorized } from './features/auth/pages/unauthorized/unauthorized';
-import { roleGuard } from './core/guards/role.guard';
-import { authGuard, dashboardRedirectGuard, publicOnlyGuard } from './core/guards/auth.guard';
+import { Login } from './pages/auth/login/login';
+import { Dashboard } from './pages/dashboard/dashboard';
+import { Activos } from './pages/machines/activos';
+import { Visitas } from './pages/visits/visitas';
+import { Tickets } from './pages/tickets/tickets';
+import { TicketDetail } from './pages/tickets/detail/ticket-detail';
+import { Pedidos } from './pages/sales/pedidos';
+import { Locales } from './pages/locales/locales';
+import { Reportes } from './pages/reportes/reportes';
+import { Usuarios } from './pages/users/usuarios';
+import { Perfil } from './pages/perfil/perfil';
+import { Tenants } from './pages/tenants/tenants';
+import { TenantDetail } from './pages/tenants/detail/tenant-detail';
+import { MetricasGlobales } from './pages/metricas-globales/metricas-globales';
+import { Unauthorized } from './pages/auth/unauthorized/unauthorized';
+import { roleGuard } from '@core/guards/role.guard';
+import { authGuard, dashboardRedirectGuard, publicOnlyGuard } from '@core/guards/auth.guard';
 
 export const routes: Routes = [
   { path: 'login', component: Login, canActivate: [publicOnlyGuard] },
@@ -43,3 +43,6 @@ export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
 ];
+
+
+

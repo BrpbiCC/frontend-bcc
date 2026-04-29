@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { SharedMaterialModule } from '../../../shared/material/material.module';
-import { MachinesService } from '../../../features/machines/services/machines.service';
-import { Machine } from '../../../features/machines/models/machine.model';
+import { SharedMaterialModule } from '@shared/material/material.module';
+import { MachinesService } from '@features/machines/services/machines.service';
+import { Machine } from '@models/machine.model';
 
 @Component({
   selector: 'app-mapa-locales',
@@ -189,3 +189,7 @@ export class MapaLocalesComponent implements OnInit, AfterViewInit {
     this.loadMachines();
   }
 }
+
+
+
+
