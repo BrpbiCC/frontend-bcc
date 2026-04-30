@@ -1,4 +1,4 @@
-# FríaCheck - Frontend Angular
+# FríoCheck - Frontend Angular
 
 Aplicación web frontend desarrollada en Angular para el sistema de gestión FríaCheck. Incluye funcionalidades de dashboard, gestión de usuarios, locales, pedidos, reportes y más.
 
