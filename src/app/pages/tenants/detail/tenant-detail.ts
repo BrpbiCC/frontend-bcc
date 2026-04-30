@@ -114,7 +114,7 @@ export class TenantDetail implements OnInit {
     const newStatus = this.tenant.estado === 'Activo';
     const action = newStatus ? 'desactivar' : 'activar';
 
-    const confirmed = confirm(`¿Estás seguro de ${action} el tenant "${this.tenant.name}"?`);
+    const confirmed = confirm(`¿Estás seguro de que deseas ${action} el tenant "${this.tenant.name}"?`);
 
     if (!confirmed) return;
 
@@ -189,7 +189,7 @@ export class TenantDetail implements OnInit {
       return;
     }
 
-    const confirmed = confirm(`¿Estás seguro de que deseas eliminar este local? Esta acción no puede deshacerse.`);
+    const confirmed = confirm(`¿Estás seguro de que deseas eliminar el tenant ${this.tenant.name}? Esta acción no puede deshacerse.`);
     if (!confirmed) return;
 
     this.actionError = null;
